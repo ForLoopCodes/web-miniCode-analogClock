@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Clock
+        </title>
+        <style>
+            :root {
+                --backgcolor: #eeeeff;
+            }
+            * {
+            }
+            html, body, .viewport {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            .container-center {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 100%;
+                background-color: var(--backgcolor);
+                margin: 0;
+            }
+            .watch-face {
+                height: 300px;
+                width: 300px;
+                border-radius: 50vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                background: linear-gradient(145deg, #e9e9ff, #fbfbff);
+                box-shadow: 10px 10px 20px #e9e9ff, -10px -10px 20px #ffffff;
+            }
+            .watch-center {
+                height: 25px;
+                width: 25px;
+                border-radius: 50vw;
+                z-index: 5;
+                background: #7e8eff;
+                position: absolute;
+            }
+            .hand {
+                position: absolute;
+            }
+            .main-hand {
+                height: 65%;
+                border-radius: 50vw;
+            }
+            .watch-hour-hand {
+                height: 160px;
+                width: 15px;
+                z-index: 3;
+            }
+            .watch-minute-hand {
+                height: 230px;
+                width: 7px;
+                z-index: 4;
+            }
+            .watch-second-hand {
+                height: 200px;
+                width: 5px;
+                    display: none;
+                z-index: 4;
+            }
+            .main-hour-hand {
+                background: #ff9292;
+                box-shadow: 10px 10px 20px #e9e9ff, -10px -10px 20px #ffffff;
+            }
+            .main-minute-hand {
+                background: #7e8eff;
+                box-shadow: 10px 10px 20px #e4e4ff, -10px -10px 20px #ffffff;
+            }
+            .main-second-hand {
+                background: rgb(173, 173, 173);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-center">
+            <div class="watch-face">
+                <div class="watch-center">
+
+                </div>
+                <div class="watch-hour-hand hand">
+                    <div class="main-hour-hand main-hand">
+
+                    </div>
+                </div>
+                <div class="watch-minute-hand hand">
+                    <div class="main-minute-hand main-hand">
+                        
+                    </div>
+                </div>
+                <div class="watch-second-hand hand">
+                    <div class="main-second-hand main-hand">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            setInterval (
+                function() {
+                    var time = new Date()
+                    var hours = time.getHours();
+                    var minutes = time.getMinutes();
+                    var seconds = time.getSeconds();
+                    var hourHand = (((hours * 3600) + (minutes * 60) + (seconds)) * 360) / (12 * 60 * 60)
+                    document.querySelector('.watch-hour-hand').style.transform = 'rotate(' + hourHand + 'deg)'
+                    var minuteHand = (((minutes * 60) + (seconds)) * 360) / (60 * 60)
+                    document.querySelector('.watch-minute-hand').style.transform = 'rotate(' + minuteHand + 'deg)'
+                    var secondHand = (seconds * 360) / (60)
+                    document.querySelector('.watch-second-hand').style.transform = 'rotate(' + secondHand + 'deg)'
+                }
+            ), 0
+        </script>
+    </body>
+</html>
